@@ -5,7 +5,7 @@ close all
 fprintf('Programme is running, please be patient...\n')
 
 % Load Audio
-[y0,fs] = audioread('../../../audio/c scale slow.wav');
+[y0,fs] = audioread('../../../audio/testSC.wav');%C3-C4 %c scale fast
 
 % Sample period
 dt = 1/fs;
@@ -18,23 +18,44 @@ NUM_LAGS = 1700;
 
 % Theshold value
 THRES_VALUE_ACF = 0.15;
-THRES_VALUE_ONSET = 0.25;
+THRES_VALUE_ONSET = 0.08;
 % The time in sec that people can play
-THRES_VALUE_TIME = 0.05;
+THRES_VALUE_TIME = 1/11;
 
-% Select one channel of steoro signal
+% Select one channel of stereo signal
 y0 = (y0(:,1))';
+% Normalizing input signal
+y0 = y0 * 1/max(y0); %========================================================================================>added 1/9
 
 %% Onset detection
 power_envelope = get_power_envelope(y0);
 % Normalization
 power_envelope = power_envelope/max(power_envelope);
+figure(101)
+plot(power_envelope)
+title('power_Envelope')
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% test = power_envelope;
+% figure(105)
+% plot(test)
+% title('test======================')
+% qwe = envelope(test,310,'peaks');
+% figure(106)
+% plot(qwe)
+% title('qwe======================')
+% power_envelope = qwe;
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 power_envelope = thresholding(power_envelope, THRES_VALUE_ONSET);
+figure(102)
+plot(power_envelope)
+title('peaks')
 peaks = onset_peak_picking(power_envelope, THRES_VALUE_ONSET, THRES_VALUE_TIME, fs);
 
 %% Duration detection
 duration_notes = duration_detection(peaks, length(y0));
-notes_weighting = find_notes_weighting(TEMPO, duration_notes/fs, 0.05);
+notes_weighting = find_notes_weighting(TEMPO, duration_notes/fs, THRES_VALUE_TIME);
 
 % Initialize the result
 piano_note = cell(1,length(peaks));
@@ -43,6 +64,7 @@ piano_note = cell(1,length(peaks));
 if (isempty(peaks))
     error('No notes are found!')
 end
+
 
 %% Pitch detection of individual note 
 for p = 1:length(peaks)

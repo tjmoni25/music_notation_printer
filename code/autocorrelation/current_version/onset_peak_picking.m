@@ -8,20 +8,40 @@ for i = 1:length(pks)
         peaks = [peaks, locs(i)];
     end
 end
-for j = 1:(length(peaks) - 1)
+% for j = 1:(length(peaks) - 1)
+%     
+%     % Peaks are not too close together
+%     if (peaks(j+1) - peaks(j)) >= (time_threshold * fs)
+%         continue;
+%     % Peaks are too close together
+%     else
+%         if (x(peaks(j+1)) > x(peaks(j)))
+%             peaks(j) = 0;
+%         else           
+%             peaks(j+1) = 0;
+%         end
+%     end
+%     
+% end
+
+%% need to redo - using zero-crossing then use time-threshold!
+j = 1;
+while j ~= length(peaks)
     
     % Peaks are not too close together
     if (peaks(j+1) - peaks(j)) >= (time_threshold * fs)
+        j=j+1;
         continue;
     % Peaks are too close together
     else
         if (x(peaks(j+1)) > x(peaks(j)))
-            peaks(j) = 0;
+            peaks(j) = [];            
         else           
-            peaks(j+1) = 0;
+            peaks(j+1) = [];
         end
     end
     
 end
-peaks(peaks == 0) = [];
+
+%peaks(peaks == 0) = [];
 end
