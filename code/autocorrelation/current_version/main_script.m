@@ -5,7 +5,7 @@ close all
 fprintf('Programme is running, please be patient...\n')
 
 % Load Audio
-[y0,fs] = audioread('../../../audio/testSC.wav');%C3-C4 %c scale fast
+[y0,fs] = audioread('../../../audio/twinkle synthetic 120.wav');%C3-C4 %c scale fast
 
 % Sample period
 dt = 1/fs;
