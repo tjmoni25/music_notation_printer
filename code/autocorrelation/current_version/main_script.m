@@ -2,13 +2,8 @@ clc
 clear
 close all
 
-fprintf('Programme is running, please be patient...\n')
-
 % Load Audio
 [y0,fs] = audioread('../../../audio/twinkle synthetic 120.wav');%C3-C4 %c scale fast
-
-% Sample period
-dt = 1/fs;
 
 % Tempo of the piece (in quarter note)
 TEMPO = 120;
@@ -17,10 +12,15 @@ TEMPO = 120;
 NUM_LAGS = 1700;
 
 % Theshold value
-THRES_VALUE_ACF = 0.15;
+THRES_VALUE_ACF = 0.4;
 THRES_VALUE_ONSET = 0.08;
+THRES_VALUE_OFFSET = 0.025;
 % The time in sec that people can play
 THRES_VALUE_TIME = 1/11;
+% Window size
+SIZE_SMOOTHING_WINDOW = 2000; %in no. of samples samples
+
+fprintf('Programme is running, please be patient...\n')
 
 % Select one channel of stereo signal
 y0 = (y0(:,1))';
@@ -28,12 +28,12 @@ y0 = (y0(:,1))';
 y0 = y0 * 1/max(y0); %========================================================================================>added 1/9
 
 %% Onset detection
-power_envelope = get_power_envelope(y0);
+[first_E0, E0_shift, power_envelope] = get_power_envelope(y0, SIZE_SMOOTHING_WINDOW);
 % Normalization
 power_envelope = power_envelope/max(power_envelope);
 figure(101)
 plot(power_envelope)
-title('power_Envelope')
+title('Power Envelope')
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % test = power_envelope;
@@ -53,10 +53,6 @@ plot(power_envelope)
 title('peaks')
 peaks = onset_peak_picking(power_envelope, THRES_VALUE_ONSET, THRES_VALUE_TIME, fs);
 
-%% Duration detection
-duration_notes = duration_detection(peaks, length(y0));
-notes_weighting = find_notes_weighting(TEMPO, duration_notes/fs, THRES_VALUE_TIME);
-
 % Initialize the result
 piano_note = cell(1,length(peaks));
 
@@ -64,13 +60,14 @@ piano_note = cell(1,length(peaks));
 if (isempty(peaks))
     error('No notes are found!')
 end
-
+note_number = zeros(1, length(peaks));
 
 %% Pitch detection of individual note 
 for p = 1:length(peaks)
     sampleStart = peaks(p)+ 1;
     if p == length(peaks)
-        sampleEnd = length(y0);
+        sampleEnd = offset_detection(first_E0, E0_shift, sampleStart, length(y0), THRES_VALUE_OFFSET);
+        offset_pos = sampleEnd;
     else
         sampleEnd = peaks(p+1);
     end
@@ -88,7 +85,7 @@ for p = 1:length(peaks)
     [p1, p2] = peak_picking(filtered_ac);
     % Finding the frequency of the input signal
     freq = fs /abs(p1 - p2);
-    piano_note{p} = find_piano_note(freq);
+    [piano_note{p}, note_number(p)] = find_piano_note(freq);
     if (p == 1)
         fprintf('Piano note detected:\n');
     end
@@ -109,16 +106,32 @@ for p = 1:length(peaks)
     title('Result of filtered ACF');
 end
 
+%% Duration detection
+duration_notes = duration_detection(peaks, offset_pos, length(y0));
+notes_weighting = find_notes_weighting(TEMPO, duration_notes/fs, THRES_VALUE_TIME);
+
 % Display results for Onset and notes weighting
 figure(p+1)
 plot(power_envelope)
 title('Onset Peaks')
+
+figure(p+2)
+plot(y0)
+title('Raw Audio')
 
 fprintf('Notes detected in sequence:\n');
 disp(piano_note);
 
 fprintf('Notes weighting:\n')
 disp(notes_weighting)
+
+%% Writing into music score
+fprintf('Writing into music score\n');
+if (writing_music_score(note_number, piano_note, notes_weighting, TEMPO))
+    fprintf('Successful.\n');
+else
+    fprintf('Error: Cannot write into music score file\n');
+end
 
 fprintf('Program terminated.\n')
 

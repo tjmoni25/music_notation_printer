@@ -1,0 +1,51 @@
+# -*-compilation-*-
+Processing `H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly'
+Parsing...
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:1: warning: no \version statement found, please add
+
+\version "2.18.2"
+
+for future compatibility
+Interpreting music...
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:9: warning: barcheck failed at: 1/4
+	
+        R4 R4 R4 R4 a4 a4 R2 R4 R4 R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:12: warning: barcheck failed at: 1/2
+	R4 
+           R4 R4 R4 a4 a4 R2 R4 R4 R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:15: warning: barcheck failed at: 3/4
+	R4 R4 
+              R4 R4 a4 a4 R2 R4 R4 R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:27: warning: barcheck failed at: 1/2
+	R4 R4 R4 R4 a4 a4 
+                          R2 R4 R4 R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:30: warning: barcheck failed at: 1/4
+	R4 R4 R4 R4 a4 a4 R2 
+                             R4 R4 R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:33: warning: barcheck failed at: 1/2
+	R4 R4 R4 R4 a4 a4 R2 R4 
+                                R4 R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:36: warning: barcheck failed at: 3/4
+	R4 R4 R4 R4 a4 a4 R2 R4 R4 
+                                   R4 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:42: warning: barcheck failed at: 1/4
+	R4 R4 R4 R4 a4 a4 R2 R4 R4 R4 R4 
+                                         R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:4:45: warning: barcheck failed at: 1/2
+	R4 R4 R4 R4 a4 a4 R2 R4 R4 R4 R4 R4 
+                                            R4 R2 
+Preprocessing graphical objects...
+Interpreting music...
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:8:17: warning: barcheck failed at: 1/4
+	c c g g 
+                R4 R4 g f f e e d d c 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ly:8:20: warning: barcheck failed at: 1/2
+	c c g g R4 
+                   R4 g f f e e d d c 
+Preprocessing graphical objects...
+Finding the ideal number of pages...
+Fitting music on 1 page...
+Drawing systems...
+Layout output to `/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.ps'...
+Converting to `/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/music_score_output.pdf'...
+Success: compilation successfully completed

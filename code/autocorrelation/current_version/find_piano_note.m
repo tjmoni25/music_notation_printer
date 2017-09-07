@@ -1,4 +1,4 @@
-function [piano_note] = find_piano_note(detected_freq)
+function [piano_note, note_number] = find_piano_note(detected_freq)
 
 % Initialize the piano frequency table
 piano_ft = zeros(1, 88);
@@ -13,6 +13,7 @@ min_freq_diff = abs(detected_freq - piano_ft);
 % Find out which index/position number has the minimum difference which
 % means the detected frequency is closest to the respected piano key
 n_pos = min_freq_diff == min(min_freq_diff);
+[~,note_number] = max(n_pos);
 % List of piano key for matching
 piano_note_list = {
     'A0';
