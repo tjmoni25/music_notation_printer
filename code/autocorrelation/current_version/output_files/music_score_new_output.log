@@ -1,0 +1,88 @@
+# -*-compilation-*-
+Processing `H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly'
+Parsing...
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:1: warning: no \version statement found, please add
+
+\version "2.18.2"
+
+for future compatibility
+Interpreting music...
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:9: warning: barcheck failed at: 1/4
+	
+        R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:12: warning: barcheck failed at: 1/2
+	R4 
+           R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:15: warning: barcheck failed at: 5/8
+	R4 R4 
+              R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:18: warning: barcheck failed at: 3/4
+	R4 R4 R8 
+                 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:21: warning: barcheck failed at: 7/8
+	R4 R4 R8 R8 
+                    R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:27: warning: barcheck failed at: 1/4
+	R4 R4 R8 R8 R8 R8 
+                          R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:30: warning: barcheck failed at: 1/2
+	R4 R4 R8 R8 R8 R8 R4 
+                             R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:33: warning: barcheck failed at: 3/4
+	R4 R4 R8 R8 R8 R8 R4 R4 
+                                R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:39: warning: barcheck failed at: 1/8
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 
+                                      R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:42: warning: barcheck failed at: 1/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 
+                                         R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:45: warning: barcheck failed at: 3/8
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 
+                                            R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:48: warning: barcheck failed at: 1/2
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 
+                                               R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:51: warning: barcheck failed at: 3/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 
+                                                  R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:57: warning: barcheck failed at: 1/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 
+                                                        R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:60: warning: barcheck failed at: 1/2
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 
+                                                           R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:63: warning: barcheck failed at: 5/8
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 
+                                                              R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:66: warning: barcheck failed at: 3/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 
+                                                                 R8 R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:69: warning: barcheck failed at: 7/8
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 
+                                                                    R8 R8 R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:75: warning: barcheck failed at: 1/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 
+                                                                          R4 R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:78: warning: barcheck failed at: 1/2
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 
+                                                                             R4 R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:81: warning: barcheck failed at: 5/8
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 
+                                                                                R8 R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:84: warning: barcheck failed at: 3/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 
+                                                                                   R8 R4 R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:90: warning: barcheck failed at: 1/4
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 
+                                                                                         R4 R4 R2 
+H:/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ly:9:93: warning: barcheck failed at: 1/2
+	R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R4 R4 R8 R8 R8 R8 R4 R4 R8 R8 R4 R4 
+                                                                                            R4 R2 
+Preprocessing graphical objects...
+Finding the ideal number of pages...
+Fitting music on 1 page...
+Drawing systems...
+Layout output to `/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.ps'...
+Converting to `/Documents/partIV_dir/music_notation_printer/code/autocorrelation/current_version/output_files/music_score_new_output.pdf'...
+Success: compilation successfully completed

@@ -3,14 +3,17 @@ clear
 close all
 
 % Load Audio
-[y0,fs] = audioread('../../../audio/twinkle synthetic 120.wav');%C3-C4 %c scale fast
+[y0,fs] = audioread('../../../audio/new/legato/80.wav');
 
 % Tempo of the piece (in quarter note)
-TEMPO = 120;
+TEMPO = 80;
 
+% Time signature
+TIME_SIGNATURE = '4/4';
+
+%% Internal variable constants
 % Number of lags defined
 NUM_LAGS = 1700;
-
 % Theshold value
 THRES_VALUE_ACF = 0.4;
 THRES_VALUE_ONSET = 0.08;
@@ -106,10 +109,6 @@ for p = 1:length(peaks)
     title('Result of filtered ACF');
 end
 
-%% Duration detection
-duration_notes = duration_detection(peaks, offset_pos, length(y0));
-notes_weighting = find_notes_weighting(TEMPO, duration_notes/fs, THRES_VALUE_TIME);
-
 % Display results for Onset and notes weighting
 figure(p+1)
 plot(power_envelope)
@@ -122,15 +121,42 @@ title('Raw Audio')
 fprintf('Notes detected in sequence:\n');
 disp(piano_note);
 
-fprintf('Notes weighting:\n')
-disp(notes_weighting)
+%% Duration detection
+duration_notes = duration_detection(peaks, offset_pos, length(y0));
+[notes_weighting, least_note_weighting] = find_notes_weighting(TEMPO, duration_notes/fs, THRES_VALUE_TIME);
+
+%% Note weighting checking
+[notes_weighting_new, weighting_fixed] = note_weight_check(notes_weighting, textscan(TIME_SIGNATURE, '%d/%d'), least_note_weighting);
 
 %% Writing into music score
-fprintf('Writing into music score\n');
-if (writing_music_score(note_number, piano_note, notes_weighting, TEMPO))
-    fprintf('Successful.\n');
+% With old notes weighting
+if weighting_fixed == 1
+    fprintf('Old notes weighting:\n');
+    disp(notes_weighting)
+    fprintf('Creating music score with unfixed note weighting and writing into file... ');
+    if (writing_music_score(note_number, piano_note, notes_weighting, TEMPO, TIME_SIGNATURE, 'old'))
+        fprintf('successful!\n');
+    else
+        fprintf('failed!\n');
+    end
+elseif weighting_fixed == -1
+    fprintf('Could not be able to fix the weighting.\n');
+elseif weighting_fixed == 0
+    fprintf('No wrong note weighting was detected.\n');
+end
+if weighting_fixed == 1
+    fprintf('New notes weighting:\n');
 else
-    fprintf('Error: Cannot write into music score file\n');
+    fprintf('Notes weighting:\n');
+end
+disp(notes_weighting_new)
+
+% With new notes weighting
+fprintf('Creating music score with new note weighting and writing into file... ');
+if (writing_music_score(note_number, piano_note, notes_weighting_new, TEMPO, TIME_SIGNATURE, 'new'))
+    fprintf('successful!\n');
+else
+    fprintf('failed!\n');
 end
 
 fprintf('Program terminated.\n')
