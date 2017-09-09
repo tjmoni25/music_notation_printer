@@ -3,13 +3,13 @@ clear
 close all
 
 % Load Audio
-[y0,fs] = audioread('../../../audio/new/legato/80.wav');
+[y0,fs] = audioread('../../../audio/acf_wav/recorded/single_notes/c8.wav');
 
 % Tempo of the piece (in quarter note)
-TEMPO = 80;
+TEMPO = 120;
 
 % Time signature
-TIME_SIGNATURE = '4/4';
+TIME_SIGNATURE = '3/4';
 
 %% Internal variable constants
 % Number of lags defined
@@ -61,9 +61,11 @@ piano_note = cell(1,length(peaks));
 
 % Throw errors if peaks cannot be found
 if (isempty(peaks))
-    error('No notes are found!')
+    disp('Error: No notes are found!')
+    return;
 end
 note_number = zeros(1, length(peaks));
+cannot_find_note_freq = false;
 
 %% Pitch detection of individual note 
 for p = 1:length(peaks)
@@ -85,28 +87,34 @@ for p = 1:length(peaks)
     % Thresholding
     filtered_ac = thresholding(ac, THRES_VALUE_ACF);
     % Peak picking
-    [p1, p2] = peak_picking(filtered_ac);
-    % Finding the frequency of the input signal
-    freq = fs /abs(p1 - p2);
-    [piano_note{p}, note_number(p)] = find_piano_note(freq);
-    if (p == 1)
-        fprintf('Piano note detected:\n');
+    [p1, p2, success] = peak_picking(filtered_ac);
+    
+    if ~success
+        cannot_find_note_freq = true;
+        fprintf('Cannot find the frequency of note %d\n', p);
+    else
+        % Finding the frequency of the input signal
+        freq = fs /abs(p1 - p2);
+        [piano_note{p}, note_number(p)] = find_piano_note(freq);
+        if (p == 1)
+            fprintf('Piano note detected:\n');
+        end
+        % Display results from ACF
+        fprintf('%s, at %.2f Hz\n', piano_note{p}, freq);
+        % Plot results
+        subplot(2,2,1)
+        plot(window_funct.*y);
+        title(sprintf('signal %s with window applied', piano_note{p}));
+        subplot(2,2,2)
+        plot(y);
+        title(sprintf('Input Audio Signal %s Data', piano_note{p}));
+        subplot(2,2,3)
+        plot(ac);
+        title('Result of ACF')
+        subplot(2,2,4)
+        plot(filtered_ac);
+        title('Result of filtered ACF');
     end
-    % Display results from ACF
-    fprintf('%s, at %.2f Hz\n', piano_note{p}, freq);
-    % Plot results
-    subplot(2,2,1)
-    plot(window_funct.*y);
-    title(sprintf('signal %s with window applied', piano_note{p}));
-    subplot(2,2,2)
-    plot(y);
-    title(sprintf('Input Audio Signal %s Data', piano_note{p}));
-    subplot(2,2,3)
-    plot(ac);
-    title('Result of ACF')
-    subplot(2,2,4)
-    plot(filtered_ac);
-    title('Result of filtered ACF');
 end
 
 % Display results for Onset and notes weighting
@@ -117,6 +125,8 @@ title('Onset Peaks')
 figure(p+2)
 plot(y0)
 title('Raw Audio')
+
+fprintf('\nNo. of notes detected: %d\n',  length(piano_note));
 
 fprintf('Notes detected in sequence:\n');
 disp(piano_note);
@@ -129,34 +139,40 @@ duration_notes = duration_detection(peaks, offset_pos, length(y0));
 [notes_weighting_new, weighting_fixed] = note_weight_check(notes_weighting, textscan(TIME_SIGNATURE, '%d/%d'), least_note_weighting);
 
 %% Writing into music score
-% With old notes weighting
-if weighting_fixed == 1
-    fprintf('Old notes weighting:\n');
-    disp(notes_weighting)
-    fprintf('Creating music score with unfixed note weighting and writing into file... ');
-    if (writing_music_score(note_number, piano_note, notes_weighting, TEMPO, TIME_SIGNATURE, 'old'))
+if cannot_find_note_freq
+    fprintf('No attempt to create music score sheet since some of the frequency of notes cannot be detemined.\n');
+else
+    % With old notes weighting
+    if weighting_fixed == 1
+        fprintf('Old notes weighting:\n');
+        disp(notes_weighting)
+        fprintf('Creating music score with unfixed note weighting and writing into file... ');
+        if (writing_music_score(note_number, piano_note, notes_weighting, TEMPO, TIME_SIGNATURE, 'old'))
+            fprintf('successful!\n');
+        else
+            fprintf('failed!\n');
+        end
+    elseif weighting_fixed == -1
+        fprintf('Could not be able to fix the weighting.\n');
+    elseif weighting_fixed == 0
+        fprintf('No wrong note weighting was detected.\n');
+    end
+    if weighting_fixed == 1
+        fprintf('New notes weighting:\n');        
+        disp(notes_weighting_new)
+        fprintf('Creating music score with new note weighting and writing into file... ');
+    else
+        fprintf('Notes weighting:\n');        
+        disp(notes_weighting_new)
+        fprintf('Creating music score and writing into file... ');
+    end
+
+    % With new notes weighting
+    if (writing_music_score(note_number, piano_note, notes_weighting_new, TEMPO, TIME_SIGNATURE, 'new'))
         fprintf('successful!\n');
     else
         fprintf('failed!\n');
     end
-elseif weighting_fixed == -1
-    fprintf('Could not be able to fix the weighting.\n');
-elseif weighting_fixed == 0
-    fprintf('No wrong note weighting was detected.\n');
-end
-if weighting_fixed == 1
-    fprintf('New notes weighting:\n');
-else
-    fprintf('Notes weighting:\n');
-end
-disp(notes_weighting_new)
-
-% With new notes weighting
-fprintf('Creating music score with new note weighting and writing into file... ');
-if (writing_music_score(note_number, piano_note, notes_weighting_new, TEMPO, TIME_SIGNATURE, 'new'))
-    fprintf('successful!\n');
-else
-    fprintf('failed!\n');
 end
 
 fprintf('Program terminated.\n')

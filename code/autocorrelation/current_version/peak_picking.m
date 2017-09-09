@@ -1,6 +1,7 @@
-function [p1, p2] = peak_picking(x)
+function [p1, p2, success] = peak_picking(x)
 % Peak picking algorithm
-
+success = false;
+p2 = [];
 sig = x;
 % ACF always has the maximum at the first location
 p1 = 1;
@@ -10,15 +11,25 @@ i = 1;
 while sig(i) > 0
     sig(i) = 0;
     i = i + 1;
+    if i > length(sig)
+        disp('Error: Cannot find the second peak\n');
+        return;
+    end
 end
 
 while sig(i) == 0
     i = i + 1;
+    if i > length(sig)
+        return;
+    end
 end
 temp_peaks = [];
 while sig(i) > 0
     temp_peaks = [temp_peaks, i];
     i = i + 1;
+    if i > length(sig)
+        return;
+    end
 end
 
 [~, temp_peaks_pos] = max(sig(temp_peaks));
@@ -26,7 +37,9 @@ end
 p2 = temp_peaks(temp_peaks_pos);
 
 if length(p2) ~= 1
-    error('The ACF has only one peak.');
+    return;
 end
+
+success = true;
 
 end

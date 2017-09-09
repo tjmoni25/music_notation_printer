@@ -44,7 +44,7 @@ for i = 1:length(new_note_weighting)
         if ~fixed_error
             return;
         else
-            fprintf('Wrong weighting fixed\n');
+            fprintf('Wrong weighting fixed.\n');
             weighting_fixed = 1;
         end
         % Keep going if having low note_weight_sum
